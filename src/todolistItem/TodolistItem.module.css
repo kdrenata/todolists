@@ -1,0 +1,14 @@
+
+.todolist {
+    background-color: #9ba6b6;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2),
+    -5px -5px 15px rgba(255, 255, 255, 0.5);
+    /*box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.1),*/
+    /*inset -4px -4px 10px rgba(255, 255, 255, 0.7);*/
+    /*border-radius: 5px;*/
+    padding: 50px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+.todolist:hover {
+    box-shadow: 0 15px 30px rgba(45, 50, 80, 0.9);
+}
