@@ -4,8 +4,7 @@ import {v1} from 'uuid'
 import {TodolistItem} from './todolistItem/TodolistItem.tsx'
 
 
-
-export type Todolist = {
+export type TodolistType = {
     id: string
     title: string
     filter: FilterValues
@@ -19,17 +18,18 @@ export type TasksStateType = { // тип описания структуры д�
     [todolistId: string]: Task[]
 }
 
-
 export type FilterValues = 'all' | 'active' | 'completed'
 
 export const App = () => {
 // BBL
     const todolistId_1 = v1()
     const todolistId_2 = v1()
+    const todolistId_3 = v1()
 
-    const [todolists, setTodolists] = useState<Todolist[]>([
+    const [todolists, setTodolists] = useState<Array<TodolistType>>([
         {id: todolistId_1, title: 'What to learn', filter: 'all'},
-        {id: todolistId_2, title: 'What to buy', filter: 'all'}
+        {id: todolistId_2, title: 'What to buy', filter: 'all'},
+        {id: todolistId_3, title: 'What to cook', filter: 'all'}
     ])
     const [tasks, setTasks] = useState<TasksStateType>({ //новый State с тасками
         [todolistId_1]: [
@@ -38,10 +38,15 @@ export const App = () => {
             {id: v1(), title: 'ReactJS', isDone: false},
         ],
         [todolistId_2]: [
-            {id: v1(), title: 'cola', isDone: true},
-            {id: v1(), title: 'ice', isDone: true},
-            {id: v1(), title: 'water', isDone: false},
-        ]
+            {id: v1(), title: 'Cola', isDone: true},
+            {id: v1(), title: 'Ice-cream', isDone: true},
+            {id: v1(), title: 'Water', isDone: false},
+        ],
+        [todolistId_3]: [
+            {id: v1(), title: 'Pie', isDone: true},
+            {id: v1(), title: 'Salad', isDone: true},
+            {id: v1(), title: 'French Baked Meat', isDone: false},
+        ],
     })
 
     const deleteTask = (taskId: string, todolistId: string) => {
@@ -71,7 +76,7 @@ export const App = () => {
     }
 
     const changeTodolistFilter = (filter: FilterValues, todolistId: string) => {
-        setTodolists(todolists.map(tl => tl.id === todolistId ? {...tl, filter:filter} : tl))
+        setTodolists(todolists.map(tl => tl.id === todolistId ? {...tl, filter} : tl))
     }
 
     const deleteTodolist = (todolistId: string) => {

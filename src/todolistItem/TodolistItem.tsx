@@ -71,7 +71,8 @@ export const TodolistItem = (props: Props) => {
           <input className={error ? 'error' : ''}
                  value={taskTitle}
                  onChange={changeTaskTitleHandler}
-                 onKeyDown={createTaskOnEnterHandler}/>
+                 onKeyDown={createTaskOnEnterHandler}
+                 placeholder="add task..."/>
           <Button title={'+'} onClick={createTaskHandler}/>
           {error && <div className={'error-message'}>{error}</div>}
         </div>
