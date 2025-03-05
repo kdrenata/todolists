@@ -2,23 +2,24 @@ import './App.css'
 import {useState} from 'react'
 import {v1} from 'uuid'
 import {TodolistItem} from './todolistItem/TodolistItem.tsx'
+import {CreateItemForm} from "./CreateItemForm.tsx";
 
+export type FilterValues = 'all' | 'active' | 'completed'
 
-export type TodolistType = {
+export type Todolist = {
     id: string
     title: string
     filter: FilterValues
 }
-export type Task = {
+export type TaskType = {
     id: string
     title: string
     isDone: boolean
 }
 export type TasksStateType = { // тип описания структуры данных для хранения тасок
-    [todolistId: string]: Task[]
+    [todolistId: string]: TaskType[]
 }
 
-export type FilterValues = 'all' | 'active' | 'completed'
 
 export const App = () => {
 
@@ -26,7 +27,7 @@ export const App = () => {
     const todolistId_1 = v1()
     const todolistId_2 = v1()
 
-    const [todolists, setTodolists] = useState<Array<TodolistType>>([
+    const [todolists, setTodolists] = useState<Array<Todolist>>([
         {id: todolistId_1, title: 'What to learn', filter: 'all'},
         {id: todolistId_2, title: 'What to buy', filter: 'all'},
     ])
@@ -43,7 +44,32 @@ export const App = () => {
         ],
 
     })
+    // tasks
+    //C
+    const createTask = (title: string, todolistId: string) => {
+        const newTask: TaskType = {id: v1(), title, isDone: false} // типизируем новую таску
 
+        setTasks({
+            ...tasks, // делаем копию, потому что призошли изменения
+            [todolistId]: [newTask, ...tasks[todolistId]]  // в массиве, который лежит по ключу [todolistId] появилась новая таска. Сначала кладем новую таску, потом все таски, которые были в массиве раньше
+        })
+    }
+    //U1
+    const changeTaskStatus = (taskId: string, isDone: boolean, todolistId: string) => {
+        setTasks({
+            ...tasks,
+            [todolistId]: tasks[todolistId].map(task => task.id == taskId ? {...task, isDone} : task)
+        })
+    }
+    //U2
+    const changeTaskTitle = (taskId: string, title: string, todolistId: string) => {
+        setTasks({
+            ...tasks,
+            [todolistId]: tasks[todolistId].map(task => task.id == taskId ? {...task, title} : task)
+        })
+    }
+
+    //D
     const deleteTask = (taskId: string, todolistId: string) => {
         // const filteredTasks = tasks.filter(task => {
         //   return task.id !== taskId
@@ -54,30 +80,31 @@ export const App = () => {
         })  //по ключу todolistId(в каком-то конкретном массиве), мы взяли все старые таски tasks[todolistId] и отфильтровали в соответствии с условием(берем каждую таску и возвращаем условие(true или false для каждой таски) и конкретный todolist перезапишется
     }
 
-    const createTask = (title: string, todolistId: string) => {
-        const newTask: Task = {id: v1(), title, isDone: false} // типизируем новую таску
 
-        setTasks({
-            ...tasks, // делаем копию, потому что призошли изменения
-            [todolistId]: [newTask, ...tasks[todolistId]]  // в массиве, который лежит по ключу [todolistId] появилась новая таска. Сначала кладем новую таску, потом все таски, которые были в массиве раньше
-        })
+    // todolists
+    //C
+    const createTodolist = (title: string) => {
+        const todolistId = v1()
+        const newTodolist: Todolist = {id: todolistId, title: title, filter: 'all'}
+        setTodolists([...todolists, newTodolist])
+        setTasks({...tasks, [todolistId]: []})
     }
-
-    const changeTaskStatus = (taskId: string, isDone: boolean, todolistId: string) => {
-        setTasks({
-            ...tasks,
-            [todolistId]: tasks[todolistId].map(task => task.id == taskId ? {...task, isDone} : task)
-        })
-    }
-
+    //U1
     const changeTodolistFilter = (filter: FilterValues, todolistId: string) => {
         setTodolists(todolists.map(tl => tl.id === todolistId ? {...tl, filter} : tl))
     }
+    //U2
+    const changeTodolistTitle = (title: string, todolistId: string) => {
+        setTodolists(todolists.map(tl => tl.id === todolistId ? {...tl, title} : tl))
+    }
 
+    //D
     const deleteTodolist = (todolistId: string) => {
         setTodolists(todolists.filter(tl => tl.id !== todolistId)) // возьмем исходный массив тудулистов и отфильтруем // для каждого тудулиста мы будем оставлять только те элементы (tl), у которых id не совпадает с todolistId и setTodolists(...) — обновляет состояние todolists, передавая новый массив без удалённого элемента.
         delete tasks[todolistId] // удаляем свойство (ключ) todolistId из объекта tasks.
     }
+
+
 
 
     // UI
@@ -106,12 +133,15 @@ export const App = () => {
                 changeTaskStatus={changeTaskStatus}
 
                 changeTodolistFilter={changeTodolistFilter}
-                deleteTodolist={deleteTodolist}/>
+                deleteTodolist={deleteTodolist}
+                changeTaskTitle={changeTaskTitle}
+                changeTodolistTitle ={changeTodolistTitle}/>
         )
     })
 
     return (
         <div className="app">
+            <CreateItemForm createItem={createTodolist}/>
             {todolistsComponents}
         </div>
     )

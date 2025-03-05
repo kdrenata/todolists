@@ -30,7 +30,7 @@
 
 }
 button {
-  background-color: #99afca;
+  background-color: rgba(171, 174, 179, 0.77);
   border: 1px solid rgba(164, 179, 213, 0.85);
   box-shadow: 0 4px 6px rgba(38, 52, 78, 0.83), 0 -2px 4px rgba(205, 214, 203, 0.93);
   /*border-radius: 5px;*/
