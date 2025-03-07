@@ -1,9 +1,9 @@
 import {type ChangeEvent} from 'react'
 import type {FilterValues, TaskType} from '../App.tsx'
-import {Button} from '../Button.tsx'
+import {Button} from './Button.tsx'
 import style from './TodolistItem.module.css'
-import {CreateItemForm} from "../CreateItemForm.tsx";
-import {EditableSpan} from "../EditableSpan.tsx";
+import {CreateItemForm} from "./CreateItemForm.tsx";
+import {EditableSpan} from "./EditableSpan.tsx";
 
 type Props = {
   //данные
@@ -97,7 +97,8 @@ export const TodolistItem = (props: Props) => {
 
                 return (
                     <li key={task.id} className={task.isDone ? 'is-done' : ''}>
-                      <input type="checkbox" checked={task.isDone}
+                      <input type="checkbox"
+                             checked={task.isDone}
                              onChange={changeTaskStatusHandler}/>
                       <EditableSpan title={task.title} changeTitle={changeTaskTitleHandler}/>
                       <Button title={'x'} onClick={deleteTaskHandler}/>

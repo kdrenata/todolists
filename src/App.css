@@ -9,11 +9,11 @@
 }
 
 .error {
-  border: red 1px solid;
+  border: #630404 1px solid;
 }
 
 .error-message {
-  color: red;
+  color: #630404;
 }
 
 .active-filter {

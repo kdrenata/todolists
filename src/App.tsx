@@ -2,7 +2,7 @@ import './App.css'
 import {useState} from 'react'
 import {v1} from 'uuid'
 import {TodolistItem} from './todolistItem/TodolistItem.tsx'
-import {CreateItemForm} from "./CreateItemForm.tsx";
+import {CreateItemForm} from "./todolistItem/CreateItemForm.tsx";
 
 export type FilterValues = 'all' | 'active' | 'completed'
 
