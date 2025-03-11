@@ -1,5 +1,7 @@
-import {Button} from "./Button.tsx";
+
 import {type ChangeEvent, type KeyboardEvent, useState} from "react";
+import {Button, TextField} from "@mui/material";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 type Props = {
     createItem: (itemTitle: string) => void,
@@ -32,16 +34,24 @@ export const CreateItemForm = ({createItem}: Props) => {
 
     return (
         <div>
-            <input
+            <TextField
+                size='small'
+                variant="outlined"
                 className={error ? 'error' : ''}
                 value={itemTitle}
                 onChange={changeItemTitleHandler}
                 onKeyDown={createTaskOnEnterHandler}
+                error={!!error} //берем '' или null и превращвем в булево значение
+                helperText={error}
                 placeholder="add task..."/>
             <Button
-                title={'+'}
-                onClick={createItemHandler}/>
-            {error && <div className={'error-message'}>{error}</div>}
+                variant="contained"
+                onClick={createItemHandler}
+                endIcon={<AddCircleIcon/>}
+            >
+                Add
+            </Button>
+            {/*{error && <div className={'error-message'}>{error}</div>}*/}
         </div>
     )
 }

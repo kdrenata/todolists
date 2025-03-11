@@ -1,17 +1,26 @@
+/*.app {*/
+/*  padding: 30px;*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  gap: 50px;*/
+/*}*/
+/*.app > div {*/
+/*  margin-right: 50px;*/
+/*}*/
+
 .app {
-  padding: 30px;
   display: flex;
   flex-direction: column;
-  gap: 50px;
-}
-.todolistsWrapper {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  width: 100vw;
 }
 
-.app > div {
-  margin-right: 50px;
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.is-done {
+  opacity: 0.5;
 }
 
 .error {
@@ -32,13 +41,13 @@
 
 #root {
   height: 100%;
-  margin: 100px 100px;
+  /*margin: 100px 100px;*/
 
 }
 button {
   background-color: rgba(171, 174, 179, 0.77);
   border: 1px solid rgba(164, 179, 213, 0.85);
-  box-shadow: 0 4px 6px rgba(38, 52, 78, 0.83), 0 -2px 4px rgba(205, 214, 203, 0.93);
+  /*box-shadow: 0 4px 6px rgba(38, 52, 78, 0.83), 0 -2px 4px rgba(205, 214, 203, 0.93);*/
   /*border-radius: 5px;*/
   color: #080d20;
   padding: 1px 5px;
@@ -49,7 +58,7 @@ button {
 
   &:hover {
     transform: scale(1);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 -2px 4px rgba(255, 255, 255, 0.6);
+    /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 -2px 4px rgba(255, 255, 255, 0.6);*/
   }
   &:active {
     transform: scale(0.9);
@@ -69,8 +78,8 @@ input {
   background-color: #e1e3e0;
   border: 1px solid rgba(236, 237, 234, 0.81);
   /*border-radius: 5px;*/
-  outline: 1px solid #cdcfca;
-  box-shadow: 0 4px 6px rgba(72, 78, 97, 0.83), 0 -2px 4px rgba(211, 227, 220, 0.93);
+  /*outline: 1px solid #cdcfca;*/
+  /*box-shadow: 0 4px 6px rgba(72, 78, 97, 0.83), 0 -2px 4px rgba(211, 227, 220, 0.93);*/
 }
 
 .is-done {

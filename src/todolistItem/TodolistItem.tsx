@@ -4,7 +4,7 @@ import type {FilterValues, TaskType} from '../App.tsx'
 import style from './TodolistItem.module.css'
 import {CreateItemForm} from "./CreateItemForm.tsx";
 import {EditableSpan} from "./EditableSpan.tsx";
-import {Button, IconButton} from "@mui/material";
+import {Button, Checkbox, IconButton, List, ListItem, ListItemIcon} from "@mui/material";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 type Props = {
@@ -77,13 +77,18 @@ export const TodolistItem = (props: Props) => {
         <div className={style.todolist}>
             <h3>
                 <EditableSpan title={title} changeTitle={changeTodolistTitleHandler}/>
-                <Button title='x' onClick={deleteTodolistHandler}/>
+                {/*<Button title='x' onClick={deleteTodolistHandler}/>*/}
+                <IconButton
+                    color='primary'
+                    onClick={deleteTodolistHandler}>
+                    <DeleteForeverIcon/>
+                </IconButton>
             </h3>
             <CreateItemForm createItem={createTaskHandler}/>
             {tasks.length === 0 ? (
                 <p>Тасок нет</p>
             ) : (
-                <ul>
+                <List>
                     {tasks.map(task => {
                         const deleteTaskHandler = () => {
                             deleteTask(task.id, todolistId)
@@ -98,19 +103,32 @@ export const TodolistItem = (props: Props) => {
                         }
 
                         return (
-                            <li key={task.id} className={task.isDone ? 'is-done' : ''}>
-                                <input type="checkbox"
-                                       checked={task.isDone}
-                                       onChange={changeTaskStatusHandler}/>
+                            <ListItem disablePadding
+                                      divider
+                                      key={task.id}
+                                      className={task.isDone ? 'is-done' : ''}
+                                      secondaryAction={
+                                          <IconButton
+                                              color='primary'
+                                              onClick={deleteTaskHandler}>
+                                              <DeleteForeverIcon/>
+                                          </IconButton>
+                                      }
+                            >
+                                <ListItemIcon>
+                                    <Checkbox
+                                        size='small'
+                                        checked={task.isDone}
+                                        onChange={changeTaskStatusHandler}/>
+                                </ListItemIcon>
+
                                 <EditableSpan title={task.title} changeTitle={changeTaskTitleHandler}/>
                                 {/*<Button title={'x'} onClick={deleteTaskHandler}/>*/}
-                                <IconButton onClick={deleteTaskHandler}>
-                                    <DeleteForeverIcon/>
-                                </IconButton>
-                            </li>
+
+                            </ListItem>
                         )
                     })}
-                </ul>
+                </List>
             )}
             <div className={style.buttonWrapper}>
                 <Button
@@ -133,5 +151,5 @@ export const TodolistItem = (props: Props) => {
                 </Button>
             </div>
         </div>
-)
+    )
 }

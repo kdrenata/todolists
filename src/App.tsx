@@ -3,6 +3,12 @@ import {useState} from 'react'
 import {v1} from 'uuid'
 import {TodolistItem} from './todolistItem/TodolistItem.tsx'
 import {CreateItemForm} from "./todolistItem/CreateItemForm.tsx";
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+import Button from '@mui/material/Button'
+import IconButton from '@mui/material/IconButton'
+import MenuIcon from '@mui/icons-material/Menu'
+import {Container, Grid2, Paper} from "@mui/material";
 
 export type FilterValues = 'all' | 'active' | 'completed'
 
@@ -121,8 +127,10 @@ export const App = () => {
 
 
         return (
+            <Grid2>
+            <Paper elevation={8}
+                   key={tl.id}>
             <TodolistItem
-                key={tl.id}
                 todolistId={tl.id}
                 title={tl.title}
                 filter={tl.filter}
@@ -136,15 +144,34 @@ export const App = () => {
                 deleteTodolist={deleteTodolist}
                 changeTaskTitle={changeTaskTitle}
                 changeTodolistTitle ={changeTodolistTitle}/>
+            </Paper>
+            </Grid2>
         )
     })
 
     return (
         <div className="app">
-            <CreateItemForm createItem={createTodolist}/>
-            <div className="todolistsWrapper">
+            <AppBar position="static">
+                <Toolbar>
+                    <Container maxWidth={'lg'}>
+                        <IconButton color="inherit">
+                            <MenuIcon />
+                        </IconButton>
+                        <Button color="inherit">Sign in</Button>
+                    </Container>
+                </Toolbar>
+            </AppBar>
+            <Container maxWidth={'lg'}>
+
+                <Grid2 container spacing={2}>
+                <CreateItemForm createItem={createTodolist}/>
+                </Grid2>
+
+                <Grid2 container spacing={4}>
                 {todolistsComponents}
-            </div>
+                </Grid2>
+
+            </Container>
         </div>
     )
 }
