@@ -86,7 +86,7 @@ export const App = () => {
     const createTodolist = (title: string) => {
         const todolistId = v1()
         const newTodolist: Todolist = {id: todolistId, title: title, filter: 'all'}
-        setTodolists([...todolists, newTodolist])
+        setTodolists([newTodolist, ...todolists])
         setTasks({...tasks, [todolistId]: []})
     }
     //U1
@@ -142,7 +142,9 @@ export const App = () => {
     return (
         <div className="app">
             <CreateItemForm createItem={createTodolist}/>
-            {todolistsComponents}
+            <div className="todolistsWrapper">
+                {todolistsComponents}
+            </div>
         </div>
     )
 }

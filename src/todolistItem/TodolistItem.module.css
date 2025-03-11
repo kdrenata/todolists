@@ -8,10 +8,14 @@
     border-radius: 5px;
     padding: 50px;
     transition: box-shadow 0.3s ease-in-out;
-    width: 200px;
+    width: 290px;
     min-width: 250px;
 
 }
 .todolist:hover {
     box-shadow: 0 15px 30px rgba(45, 50, 80, 0.9);
+}
+.buttonWrapper {
+    display: flex;
+    gap: 10px;
 }

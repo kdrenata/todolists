@@ -1,7 +1,13 @@
 .app {
   padding: 30px;
   display: flex;
-  column-gap: 20px;
+  flex-direction: column;
+  gap: 50px;
+}
+.todolistsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .app > div {
@@ -34,7 +40,7 @@ button {
   border: 1px solid rgba(164, 179, 213, 0.85);
   box-shadow: 0 4px 6px rgba(38, 52, 78, 0.83), 0 -2px 4px rgba(205, 214, 203, 0.93);
   /*border-radius: 5px;*/
-  color: #0d1c47;
+  color: #080d20;
   padding: 1px 5px;
   margin: 5px;
   cursor: pointer;
@@ -67,7 +73,7 @@ input {
   box-shadow: 0 4px 6px rgba(72, 78, 97, 0.83), 0 -2px 4px rgba(211, 227, 220, 0.93);
 }
 
-.task-done {
+.is-done {
   color: rgba(23, 28, 11, 0.63);
   text-decoration: line-through;
 }
@@ -78,3 +84,4 @@ input {
   outline: none;
   border: 2px solid #a60505
 }
+
