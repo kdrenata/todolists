@@ -4,7 +4,7 @@ import type {FilterValues, TaskType} from '../App.tsx'
 import style from './TodolistItem.module.css'
 import {CreateItemForm} from "./CreateItemForm.tsx";
 import {EditableSpan} from "./EditableSpan.tsx";
-import {Button, Checkbox, IconButton, List, ListItem, ListItemIcon} from "@mui/material";
+import {Box, Button, Checkbox, IconButton, List, ListItem, ListItemIcon} from "@mui/material";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 type Props = {
@@ -130,7 +130,7 @@ export const TodolistItem = (props: Props) => {
                     })}
                 </List>
             )}
-            <div className={style.buttonWrapper}>
+            <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
                 <Button
                     variant="contained"
                     color={filter === 'all' ? 'secondary' : 'primary'}
@@ -149,7 +149,7 @@ export const TodolistItem = (props: Props) => {
                     onClick={() => changeTodolistFilter('completed', todolistId)}>
                     Completed
                 </Button>
-            </div>
+            </Box>
         </div>
     )
 }

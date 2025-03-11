@@ -1,7 +1,7 @@
 
 import {type ChangeEvent, type KeyboardEvent, useState} from "react";
 import {Button, TextField} from "@mui/material";
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 type Props = {
     createItem: (itemTitle: string) => void,
@@ -45,11 +45,12 @@ export const CreateItemForm = ({createItem}: Props) => {
                 helperText={error}
                 placeholder="add task..."/>
             <Button
-                variant="contained"
+                variant="text"
+                size='large'
                 onClick={createItemHandler}
-                endIcon={<AddCircleIcon/>}
+                endIcon={<AddCircleOutlineIcon/>}
             >
-                Add
+
             </Button>
             {/*{error && <div className={'error-message'}>{error}</div>}*/}
         </div>

@@ -128,8 +128,10 @@ export const App = () => {
 
         return (
             <Grid2>
-            <Paper elevation={8}
-                   key={tl.id}>
+            <Paper
+                sx={{p: '15px'}}
+                elevation={8}
+                key={tl.id}>
             <TodolistItem
                 todolistId={tl.id}
                 title={tl.title}
@@ -163,7 +165,7 @@ export const App = () => {
             </AppBar>
             <Container maxWidth={'lg'}>
 
-                <Grid2 container spacing={2}>
+                <Grid2 container sx={{p: '15px 0'}}>
                 <CreateItemForm createItem={createTodolist}/>
                 </Grid2>
 
