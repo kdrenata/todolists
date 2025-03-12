@@ -4,7 +4,7 @@ import type {FilterValues, TaskType} from '../App.tsx'
 import style from './TodolistItem.module.css'
 import {CreateItemForm} from "./CreateItemForm.tsx";
 import {EditableSpan} from "./EditableSpan.tsx";
-import {Box, Button, Checkbox, IconButton, List, ListItem, ListItemIcon} from "@mui/material";
+import {Box, Button, Checkbox, IconButton, List, ListItem, ListItemIcon, Typography} from "@mui/material";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import {containerSx, getListItemSx} from "./TodolistItem.styles.ts";
 
@@ -76,7 +76,7 @@ export const TodolistItem = (props: Props) => {
 
     return (
         <div className={style.todolist}>
-            <h3>
+            <Typography variant='h6' textAlign='center' sx={{fontWeight: 700}}>
                 <EditableSpan title={title} changeTitle={changeTodolistTitleHandler}/>
                 {/*<Button title='x' onClick={deleteTodolistHandler}/>*/}
                 <IconButton
@@ -84,7 +84,7 @@ export const TodolistItem = (props: Props) => {
                     onClick={deleteTodolistHandler}>
                     <DeleteForeverIcon/>
                 </IconButton>
-            </h3>
+            </Typography>
             <CreateItemForm createItem={createTaskHandler}/>
             {tasks.length === 0 ? (
                 <p>Тасок нет</p>

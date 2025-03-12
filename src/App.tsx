@@ -165,6 +165,9 @@ export const App = () => {
             },
             mode: isLightMode ? 'light' : 'dark',
         },
+        typography: {
+            fontFamily: '"Pacifico", cursive',
+        },
 
     })
 

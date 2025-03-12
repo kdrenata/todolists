@@ -37,7 +37,7 @@ export const CreateItemForm = ({createItem}: Props) => {
             <TextField
                 size='small'
                 variant="outlined"
-                className={error ? 'error' : ''}
+
                 value={itemTitle}
                 onChange={changeItemTitleHandler}
                 onKeyDown={createTaskOnEnterHandler}
@@ -45,6 +45,7 @@ export const CreateItemForm = ({createItem}: Props) => {
                 helperText={error}
                 placeholder="add task..."/>
             <Button
+                disableElevation
                 variant="text"
                 size='large'
                 onClick={createItemHandler}
