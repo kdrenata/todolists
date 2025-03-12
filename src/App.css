@@ -42,8 +42,8 @@
 #root {
   height: 100%;
   /*margin: 100px 100px;*/
-
 }
+
 button {
   background-color: rgba(171, 174, 179, 0.77);
   border: 1px solid rgba(164, 179, 213, 0.85);
@@ -64,6 +64,7 @@ button {
     transform: scale(0.9);
   }
 }
+
 .filter-btn-active {
   background-color: #dadaca;
   color: #1b1d25;

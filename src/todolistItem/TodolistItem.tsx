@@ -6,6 +6,7 @@ import {CreateItemForm} from "./CreateItemForm.tsx";
 import {EditableSpan} from "./EditableSpan.tsx";
 import {Box, Button, Checkbox, IconButton, List, ListItem, ListItemIcon} from "@mui/material";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import {containerSx, getListItemSx} from "./TodolistItem.styles.ts";
 
 type Props = {
     //данные
@@ -106,7 +107,7 @@ export const TodolistItem = (props: Props) => {
                             <ListItem disablePadding
                                       divider
                                       key={task.id}
-                                      className={task.isDone ? 'is-done' : ''}
+                                      // className={task.isDone ? 'is-done' : ''}
                                       secondaryAction={
                                           <IconButton
                                               color='primary'
@@ -122,15 +123,16 @@ export const TodolistItem = (props: Props) => {
                                         onChange={changeTaskStatusHandler}/>
                                 </ListItemIcon>
 
+                                <Box sx={getListItemSx(task.isDone)}>
                                 <EditableSpan title={task.title} changeTitle={changeTaskTitleHandler}/>
-                                {/*<Button title={'x'} onClick={deleteTaskHandler}/>*/}
+                                </Box>
 
                             </ListItem>
                         )
                     })}
                 </List>
             )}
-            <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
+            <Box sx={containerSx}>
                 <Button
                     variant="contained"
                     color={filter === 'all' ? 'secondary' : 'primary'}
