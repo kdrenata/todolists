@@ -1,7 +1,7 @@
 
 import {type ChangeEvent, type KeyboardEvent, useState} from "react";
 import {Button, TextField} from "@mui/material";
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 
 type Props = {
     createItem: (itemTitle: string) => void,
@@ -48,8 +48,9 @@ export const CreateItemForm = ({createItem}: Props) => {
                 disableElevation
                 variant="text"
                 size='large'
+                sx={{pr: '28px'}}
                 onClick={createItemHandler}
-                endIcon={<AddCircleOutlineIcon/>}
+                endIcon={<AddBoxOutlinedIcon/>}
             >
 
             </Button>
